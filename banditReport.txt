@@ -1,0 +1,29 @@
+[main]	INFO	running on Python 3.11.8
+Run started:2025-07-05 20:00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'admin123'
+   Severity: High   Confidence: High
+   Location: secure_code_review.py:2
+
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'password1'
+   Severity: High   Confidence: High
+   Location: secure_code_review.py:3
+
+>> Issue: [B322:input] Use of input() detected.
+   Severity: Medium   Confidence: Medium
+   Location: secure_code_review.py:13
+
+Code scanned:
+	Total lines of code: 17
+	Total lines skipped (#nosec): 0
+
+Run metrics:
+	Total issues (by severity):
+		High: 2
+		Medium: 1
+		Low: 0
+	Total issues (by confidence):
+		High: 2
+		Medium: 1
+		Low: 0

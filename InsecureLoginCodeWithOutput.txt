@@ -1,0 +1,33 @@
+===============================
+Insecure Login System (Plain)
+===============================
+
+Code:
+
+users = {
+    "admin": "admin123",
+    "user1": "password1"
+}
+
+def login(username, password):
+    if username in users:
+        if users[username] == password:
+            print("Login successful")
+        else:
+            print("Wrong password")
+    else:
+        print("Username not found")
+
+u = input("Enter username: ")
+p = input("Enter password: ")
+login(u, p)
+
+
+===============================
+Sample Output:
+===============================
+
+Enter username: admin
+Enter password: admin123
+Login successful
+

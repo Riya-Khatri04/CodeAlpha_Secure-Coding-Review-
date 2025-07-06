@@ -1,0 +1,50 @@
+
+import bcrypt
+import re
+import logging
+
+logging.basicConfig(filename="login_activity.log", level=logging.INFO)
+
+user_db = {
+    "admin": bcrypt.hashpw("admin123".encode(), bcrypt.gensalt()),
+    "user1": bcrypt.hashpw("password1".encode(), bcrypt.gensalt())
+}
+
+def is_valid_username(name):
+    pattern = r"^[A-Za-z0-9_]{3,20}$"
+    return re.fullmatch(pattern, name)
+
+def is_valid_password(passwd):
+    return len(passwd) >= 6 and len(passwd) <= 20
+
+def login(user, pwd):
+    if user in user_db:
+        if bcrypt.checkpw(pwd.encode(), user_db[user]):
+            logging.info(f"{user} logged in successfully.")
+            return "Login successful!"
+        else:
+            logging.warning(f"Wrong password for {user}")
+            return "Wrong password!"
+    else:
+        logging.warning(f"Login attempt for unknown user: {user}")
+        return "Username not found!"
+
+print("---- Secure Login ----")
+u = input("Enter username: ")
+p = input("Enter password: ")
+
+if not is_valid_username(u):
+    print("Username must be 3-20 characters long with letters, numbers, or _")
+elif not is_valid_password(p):
+    print("Password must be 6-20 characters long")
+else:
+    print(login(u, p))
+
+
+# ===============================
+# Sample Output:
+# ===============================
+# ---- Secure Login ----
+# Enter username: admin
+# Enter password: admin123
+# Login successful!
